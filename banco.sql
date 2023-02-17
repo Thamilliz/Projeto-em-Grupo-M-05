@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16-Fev-2023 às 15:44
--- Versão do servidor: 10.4.8-MariaDB
--- versão do PHP: 7.3.11
+-- Tempo de geração: 17/02/2023 às 02:17
+-- Versão do servidor: 10.4.27-MariaDB
+-- Versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,23 +24,39 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `contas`
+-- Estrutura para tabela `contas`
 --
 
 CREATE TABLE `contas` (
   `ID_contas` int(11) NOT NULL,
   `ID_pessoas` int(11) NOT NULL,
   `agencia` int(11) DEFAULT NULL,
-  `saldo` double(7,2) DEFAULT NULL,
-  `limite_credito` double(7,2) DEFAULT NULL,
-  `juros` double(4,2) DEFAULT NULL,
-  `cesta_de_servico` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `saldo` decimal(7,2) DEFAULT NULL,
+  `limite_credito` decimal(7,2) DEFAULT NULL,
+  `juros` decimal(7,2) DEFAULT NULL,
+  `cesta_de_servicos` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `contas`
+--
+
+INSERT INTO `contas` (`ID_contas`, `ID_pessoas`, `agencia`, `saldo`, `limite_credito`, `juros`, `cesta_de_servicos`) VALUES
+(1, 1, 1, '50000.00', '20000.00', '2.00', 'Van Gogh'),
+(2, 2, 1, '1320.00', '2000.00', '4.75', 'Serviços Essenciais'),
+(3, 3, 1, '2640.00', '5000.00', '3.00', 'Padronizado III'),
+(4, 4, 1, '5000.00', '0.00', '0.00', 'Padronizado I'),
+(5, 5, 1, '1320.00', '0.00', '0.00', 'Padronizado I'),
+(6, 6, 1, '660.00', '0.00', '0.00', 'Salário'),
+(7, 7, 1, '10000.00', '2500.00', '4.00', 'Padronizado II'),
+(8, 8, 1, '13200.00', '4000.00', '2.50', 'Van Gogh'),
+(9, 9, 1, '660.00', '1000.00', '5.00', 'Salário'),
+(10, 10, 1, '1320.00', '0.00', '0.00', 'Serviços Essenciais');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `pessoas`
+-- Estrutura para tabela `pessoas`
 --
 
 CREATE TABLE `pessoas` (
@@ -52,10 +67,10 @@ CREATE TABLE `pessoas` (
   `data_de_nascimento` date DEFAULT NULL,
   `sexo` varchar(1) DEFAULT NULL,
   `endereco` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `pessoas`
+-- Despejando dados para a tabela `pessoas`
 --
 
 INSERT INTO `pessoas` (`ID_pessoas`, `nome`, `cpf`, `telefone`, `data_de_nascimento`, `sexo`, `endereco`) VALUES
@@ -75,40 +90,40 @@ INSERT INTO `pessoas` (`ID_pessoas`, `nome`, `cpf`, `telefone`, `data_de_nascime
 --
 
 --
--- Índices para tabela `contas`
+-- Índices de tabela `contas`
 --
 ALTER TABLE `contas`
   ADD PRIMARY KEY (`ID_contas`),
   ADD KEY `ID_pessoa` (`ID_pessoas`);
 
 --
--- Índices para tabela `pessoas`
+-- Índices de tabela `pessoas`
 --
 ALTER TABLE `pessoas`
   ADD PRIMARY KEY (`ID_pessoas`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
 -- AUTO_INCREMENT de tabela `contas`
 --
 ALTER TABLE `contas`
-  MODIFY `ID_contas` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_contas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `pessoas`
 --
 ALTER TABLE `pessoas`
-  MODIFY `ID_pessoas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `ID_pessoas` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- Restrições para despejos de tabelas
+-- Restrições para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `contas`
+-- Restrições para tabelas `contas`
 --
 ALTER TABLE `contas`
   ADD CONSTRAINT `contas_ibfk_1` FOREIGN KEY (`ID_pessoas`) REFERENCES `pessoas` (`ID_pessoas`);

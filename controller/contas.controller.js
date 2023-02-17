@@ -33,9 +33,9 @@ const contasController = {
     },
     create: async (req, res) => {
         try {
-            const { agencia, saldo, limite_credito, juros, cesta_de_servicos } = req.body
-            const sql = 'insert into contas (agencia, saldo, limite_credito, juros, cesta_de_servicos) values (?, ?, ?, ?, ?)'
-            const [rows, fields] = await pool.query(sql, [agencia, saldo, limite_credito, juros, cesta_de_servicos])
+            const { ID_pessoas, agencia, saldo, limite_credito, juros, cesta_de_servicos } = req.body
+            const sql = 'insert into contas (ID_pessoas, agencia, saldo, limite_credito, juros, cesta_de_servicos) values (?, ?, ?, ?, ?, ?)'
+            const [rows, fields] = await pool.query(sql, [ID_pessoas, agencia, saldo, limite_credito, juros, cesta_de_servicos])
 
             res.json({
                 data: rows
@@ -50,11 +50,11 @@ const contasController = {
     },
     update: async (req, res) => {
         try {
-            const { agencia, saldo, limite_credito, juros, cesta_de_servicos } = req.body
+            const { ID_pessoas, agencia, saldo, limite_credito, juros, cesta_de_servicos } = req.body
             const { ID_contas } = req.params
 
-            const sql = 'update contas set agencia = ?, saldo = ?, limite_credito = ?, juros = ?, cesta_de_servicos = ? where ID_contas = ?'
-            const [rows, fields] = await pool.query(sql, [agencia, saldo, limite_credito, juros, cesta_de_servicos, ID_contas])
+            const sql = 'update contas set ID_pessoas = ?, agencia = ?, saldo = ?, limite_credito = ?, juros = ?, cesta_de_servicos = ? where ID_contas = ?'
+            const [rows, fields] = await pool.query(sql, [ID_pessoas, agencia, saldo, limite_credito, juros, cesta_de_servicos, ID_contas])
 
             res.json({
                 data: rows
