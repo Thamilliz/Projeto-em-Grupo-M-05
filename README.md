@@ -1,20 +1,41 @@
- ## Projeto-em-Grupo-M-05 
+# Projeto em grupo do quinto módulo - CRUD API 
 
-# CONTEXTO
-⇒ Você e sua equipe foram escalados para desenvolverem
-propostas de APIs que serão o produto mínimo viável de um
-aplicativo. Vocês devem escolher o tema do aplicativo para
-identificar as entidades.  
+Projeto composto por um produto mínimo viável de um banco com as requisições create, read, update, delete (CRUD).
 
-## O que fazer?
-⇒ Nesse projeto você e sua squad serão responsáveis por
-definir quais são as entidades que o projeto precisa
-contemplar e cada um de vocês será responsável por
-implementar uma dessas entidades.
+## Endpoints do servidor 
+- pessoas 
+- contas 
 
-## As rotas a serem desenvolvidas para as entidades são:
-⇨ Listagem de todos os registros;<p>
-⇨ Listagem de um único registro com base em um parâmetro de rota;<p>
-⇨ Inserção de um registro;<p>
-⇨ Modificação de um registro;<p>
-⇨ Deleção de um registro.<p>
+## Execução
+```
+# Clone o repositório
+git clone https://github.com/Thamilliz/Projeto-em-Grupo-M-05.git
+
+# Inicie o xampp, crie um banco chamado "banco" e importe o arquivo SQL
+
+# Instale as dependências no terminal do Node.js
+npm install
+
+# Inicie o servidor 
+node index.js
+```
+## Métodos de requisição HTTP no endpoint contas 
+
+| Método | Rota | Descrição |
+| ------ | ----- | ----------- |
+| **`GET`** | **/contas** | Retorna todas as contas. |
+|  **`GET`** | **/contas/:ID_contas** | Retorna uma conta específica a partir do ID_contas. |
+|  **`POST`** | **/contas** | Cria uma nova conta.  |
+|  **`PUT`** | **/contas/:ID_contas** | Altera os dados da conta a partir do ID_contas.  |
+|  **`DELETE`** | **/contas/:ID_contas** | deleta uma conta a partir do ID_contas. |
+
+## Integrantes
+[Igor Ferreira](https://github.com/IgorFerrer053)
+
+[José Lucas](https://github.com/lucascovv)
+
+[Lucas Cardoso](https://github.com/Lucas2Cardoso)
+
+[Matheus Cristhian](https://github.com/mcristhian)
+
+[Thamilliz Vallesk](https://github.com/Thamilliz)
